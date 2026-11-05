@@ -1,0 +1,158 @@
+:root {
+  --mitigate: #0f172a;
+  --fondo: #f1f5f9;
+  --tarjeta: #ffffff;
+  --texto: #0f172a;
+  --suave: #64748b;
+  --acento: #4f46e5;
+  --acento-oscuro: #4338ca;
+  --peligro: #dc2626;
+  --borde: #e2e8f0;
+  --ok: #065f46;
+  --verde: #16a34a;
+  --ambar: #d97706;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--acento); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Barra superior */
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: var(--mitigate);
+}
+.logo { font-size: 1.2rem; font-weight: 700; color: #fff; }
+.logo:hover { text-decoration: none; }
+.barra nav { display: flex; align-items: center; gap: 1rem; }
+.barra a { color: #e2e8f0; }
+.usuario { color: #94a3b8; font-size: 0.85rem; }
+.inline { display: inline; }
+
+.contenedor {
+  width: min(720px, 92%);
+  margin: 1.5rem auto 3rem;
+  flex: 1;
+}
+
+.pie {
+  text-align: center;
+  padding: 1rem;
+  color: var(--suave);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--borde);
+  background: #fff;
+}
+.pie p { margin: 0.2rem 0; }
+
+/* Filas y tarjetas */
+.fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 6%);
+}
+
+/* Tareas */
+.tareas { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.tarea {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.tarea h2 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+.tarea h2 a { color: var(--texto); }
+.propietario { margin: 0.25rem 0; font-size: 0.85rem; color: var(--suave); }
+.desc { margin: 0.25rem 0 0.5rem; color: var(--suave); font-size: 0.9rem; white-space: pre-wrap; }
+.meta { display: flex; align-items: center; gap: 0.75rem; margin: 0; font-size: 0.85rem; color: var(--suave); }
+
+.estado {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.estado.pendiente { background: #fef3c7; color: var(--ambar); }
+.estado.en_progreso { background: #dbeafe; color: #1d4ed8; }
+.estado.completada { background: #dcfce7; color: var(--verde); }
+
+.vacio { text-align: center; color: var(--suave); margin-top: 3rem; }
+
+/* Botones */
+button, .boton {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--acento);
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+button:hover, .boton:hover { background: var(--acento-oscuro); text-decoration: none; }
+.peligro { background: transparent; color: var(--peligro); padding: 0.25rem 0.5rem; }
+.peligro:hover { background: #fee2e2; }
+.enlace {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.enlace:hover { color: #fff; }
+
+/* Formularios y alertas */
+.formulario label { display: block; margin-bottom: 0.9rem; font-size: 0.9rem; font-weight: 600; }
+.formulario input, .formulario textarea, .formulario select {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 400;
+}
+.formulario button { margin-top: 0.5rem; }
+.error { color: var(--peligro); font-size: 0.85rem; margin: 0.25rem 0 0.5rem; }
+.hint { margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--suave); }
+
+.alerta {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.alerta.ok { background: #dcfce7; color: var(--ok); }
+.alerta.error { background: #fee2e2; color: var(--peligro); }
+
+.detalle .acciones { display: flex; gap: 0.75rem; margin: 1rem 0; }
+
+@media (max-width: 560px) {
+  .tarea { flex-direction: column; }
+}

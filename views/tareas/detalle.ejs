@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+<article class="tarjeta detalle">
+  <div class="fila">
+    <h1><%= tarea.titulo %></h1>
+    <span class="estado <%= tarea.estado %>"><%= tarea.estado.replace('_', ' ') %></span>
+  </div>
+  <% if (esAdmin && !esPropietaria) { %>
+    <p class="propietario">Propietario: <%= tarea.propietario.email %></p>
+  <% } %>
+  <% if (tarea.descripcion) { %><p class="desc"><%= tarea.descripcion %></p><% } %>
+  <p class="meta">Fecha: <%= new Date(tarea.fecha).toLocaleDateString('es-ES') %></p>
+
+  <% if (esPropietaria) { %>
+    <div class="acciones">
+      <a class="boton" href="/tareas/<%= tarea._id %>/editar">Editar</a>
+      <form action="/tareas/<%= tarea._id %>/eliminar" method="POST" class="inline">
+        <button class="peligro">Eliminar</button>
+      </form>
+    </div>
+  <% } %>
+  <p><a href="/tareas">← Volver al listado</a></p>
+</article>
+
+<%- include('../partials/footer') %>

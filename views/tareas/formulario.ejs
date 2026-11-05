@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+
+<% const esEdicion = !!tarea;
+   const valoresForm = esEdicion ? tarea : (valores || {}); %>
+
+<h1><%= esEdicion ? 'Editar tarea' : 'Nueva tarea' %></h1>
+<form method="POST" class="tarjeta formulario"
+      action="<%= esEdicion ? '/tareas/' + tarea._id : '/tareas' %>">
+  <% if (errores.titulo) { %><p class="error"><%= errores.titulo %></p><% } %>
+  <label>Título
+    <input type="text" name="titulo" maxlength="120" required value="<%= valoresForm.titulo || '' %>">
+  </label>
+
+  <label>Descripción
+    <textarea name="descripcion" rows="5"><%= valoresForm.descripcion || '' %></textarea>
+  </label>
+
+  <% if (errores.estado) { %><p class="error"><%= errores.estado %></p><% } %>
+  <label>Estado
+    <select name="estado">
+      <% ['pendiente', 'en_progreso', 'completada'].forEach((estado) => { %>
+        <option value="<%= estado %>" <%= (valoresForm.estado || 'pendiente') === estado ? 'selected' : '' %>>
+          <%= estado.replace('_', ' ') %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+
+  <% if (errores.fecha) { %><p class="error"><%= errores.fecha %></p><% } %>
+  <label>Fecha
+    <input type="date" name="fecha" value="<%= esEdicion && tarea.fecha ? tarea.fecha.toISOString().slice(0, 10) : (valoresForm.fecha || '') %>">
+  </label>
+
+  <button type="submit"><%= esEdicion ? 'Guardar cambios' : 'Crear tarea' %></button>
+  <p class="hint"><a href="/tareas">← Cancelar y volver</a></p>
+</form>
+
+<%- include('../partials/footer') %>

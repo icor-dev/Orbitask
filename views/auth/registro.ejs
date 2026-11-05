@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<h1>Crear cuenta</h1>
+<form method="POST" action="/registro" class="tarjeta formulario" novalidate>
+  <% if (errores.email) { %><p class="error"><%= errores.email %></p><% } %>
+  <label>Email
+    <input type="email" name="email" value="<%= valores.email || '' %>" required autocomplete="email">
+  </label>
+  <% if (errores.password) { %><p class="error"><%= errores.password %></p><% } %>
+  <label>Contraseña (mínimo 8 caracteres)
+    <input type="password" name="password" required autocomplete="new-password" minlength="8">
+  </label>
+  <% if (errores.confirmacion) { %><p class="error"><%= errores.confirmacion %></p><% } %>
+  <label>Repite la contraseña
+    <input type="password" name="confirmacion" required autocomplete="new-password">
+  </label>
+  <button type="submit">Crear cuenta</button>
+  <p class="hint">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+</form>
+
+<%- include('../partials/footer') %>

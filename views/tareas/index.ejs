@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<div class="fila">
+  <h1><%= esAdmin ? 'Todas las tareas (admin)' : 'Mis tareas' %></h1>
+  <a class="boton" href="/tareas/nueva">+ Nueva tarea</a>
+</div>
+
+<% if (!tareas.length) { %>
+  <p class="vacio">No hay tareas todavía. <a href="/tareas/nueva">Crea la primera</a>.</p>
+<% } else { %>
+  <ul class="tareas">
+    <% tareas.forEach((tarea) => { %>
+      <li class="tarjeta tarea">
+        <div>
+          <h2><a href="/tareas/<%= tarea._id %>"><%= tarea.titulo %></a></h2>
+          <% if (esAdmin) { %><p class="propietario">de <%= tarea.propietario.email %></p><% } %>
+          <% if (tarea.descripcion) { %>
+            <p class="desc"><%= tarea.descripcion.length > 120 ? tarea.descripcion.slice(0, 120) + '…' : tarea.descripcion %></p>
+          <% } %>
+          <p class="meta">
+            <span class="estado <%= tarea.estado %>"><%= tarea.estado.replace('_', ' ') %></span>
+            <time><%= new Date(tarea.fecha).toLocaleDateString('es-ES') %></time>
+          </p>
+        </div>
+        <form action="/tareas/<%= tarea._id %>/eliminar" method="POST" class="inline">
+          <button class="peligro" title="Eliminar tarea" aria-label="Eliminar tarea">✕</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<%- include('../partials/footer') %>
