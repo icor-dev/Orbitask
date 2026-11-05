@@ -7,6 +7,7 @@
 Aplicación web full-stack con Node.js, Express y MongoDB: gestor de tareas con autenticación JWT, roles (user/admin) y vistas dinámicas.
 
 [![Producción](https://img.shields.io/badge/Demo%20en%20producci%C3%B3n-4f46e5?style=flat-square&logo=link&logoColor=white)](https://orbitask-y787.onrender.com)
+![Licencia](https://img.shields.io/badge/Licencia-MIT-181717?style=flat-square&logo=github&logoColor=white)
 ![Enunciado](https://img.shields.io/badge/Proyecto%20Final%20Optativo%20Node.js%E2%80%94UCI-181717?style=flat-square&logo=school&logoColor=white)
 
 ### 🧰 Tecnologías
